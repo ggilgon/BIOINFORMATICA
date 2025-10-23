@@ -127,21 +127,32 @@ by(datos$Colesterol, datos$Tratamiento, shapiro.test)
 
 #se puede ver que todos los pvalues superan el 0.05, por lo que todos muestran una distribución normal
 #en este caso se cumple la hipotesis nula de que siguen una distribución normal, y además en todos los casos
-#si cumple la hipotesis nula podemos utilizar anova con aov(), para realizar la comparativa
-anova_glucosa <- aov(Glucosa ~ Tratamiento, data = datos)
-summary(anova_glucosa)
+#si cumple la hipotesis nula podemos utilizar t.student con t , para realizar la comparativa
+t.test(placebo$Glucosa, tratamientoA$Glucosa)
 
-anova_presion <- aov(Presion ~Tratamiento, data = datos)
-summary(anova_presion)
+t.test(placebo$Glucosa, tratamientoB$Glucosa)
 
-anova_colesterol <- aov(Colesterol ~ Tratamiento, data = datos)
-summary(anova_colesterol)
+t.test(tratamientoA$Glucosa, tratamientoB$Glucosa)
+
+t.test(placebo$Presion, tratamientoA$Presion)
+
+t.test(placebo$Presion, tratamientoB$Presion)
+
+t.test(tratamientoA$Presion, tratamientoB$Presion)
+
+t.test(placebo$Colesterol, tratamientoA$Colesterol)
+
+t.test(placebo$Colesterol, tratamientoB$Colesterol)
+
+t.test(tratamientoA$Colesterol, tratamientoB$Colesterol)
+
 
 #como conclusiones al respecto, en el caso de la glucosa, su p-value de comparacion de medias muestra un valor mayor a 0,05, por lo que se aprueba la hipotesis nula, que todas sus medias son similares entre los grupos
 #en el caso de la presion y el colesterol, si hay diferencias significativas ya que ambos tienen una pvalue menor que 0.05, por lo que se rechaza la hipotesis nula, y se confirma que sus medias son diferentes en cada grupo
+#(menos en los casos de comparación entre el tratamiento A respecto al B teniendo en cuenta la Presión, esta tiene medias similares, y comparación del placebo con el tratamiento B en cuanto al colesterol.
 
 # 12. Realiza un ANOVA sobre la glucosa para cada tratamiento. (1 pt)
-#es igual que el ejercicio anterior
+#es igual que el ejercicio anterior, pero aplicando anova, comparando medias
 anova_glucosa <- aov(Glucosa ~ Tratamiento, data = datos)
 summary(anova_glucosa)
 
